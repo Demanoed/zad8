@@ -9,6 +9,7 @@ namespace EylerovTsikl
 {
     class Program
     {
+        #region Удаляет ребро
         static int[,] DeleteEdge(int[,] mas, int edge, ref int edges, int tops)
         {
             int[,] masNew = new int[tops, edges - 1];
@@ -25,6 +26,8 @@ namespace EylerovTsikl
             edges = edges - 1;
             return masNew;
         }
+        #endregion
+        #region Находит первую единицу в столбце
         static int FirstOneInEdge(int[,] mas, int tops, int edge)
         {
             for (int i = 0; i < tops; i++)
@@ -33,6 +36,8 @@ namespace EylerovTsikl
             }
             return 0;
         }
+        #endregion
+        #region Находит вторую единицу в столбце
         static int SecondOneInEdge(int[,] mas, int tops, int edge)
         {
             int k = 0;
@@ -43,6 +48,8 @@ namespace EylerovTsikl
             }
             return 0;
         }
+        #endregion
+        #region Проверяет, является ли первой вершиной матрицы в ребре
         static bool IsFirstOneInEdge(int[,] mas, int tops, int edge, int top)
         {
             for (int i = 0; i < tops; i++)
@@ -52,6 +59,8 @@ namespace EylerovTsikl
             }
             return false;
         }
+        #endregion
+        #region Переписывает элементы массива в другой
         static int[,] MakeMas(int[,] mas, int[,] masNew, int tops, int edges)
         {
             for (int i = 0; i < tops; i++)
@@ -61,6 +70,8 @@ namespace EylerovTsikl
             }
             return masNew;
         }
+        #endregion
+        #region Проверка на возможность достижения вершины от первой вершины до второй
         static bool FindWay(ref int[,] mas, int tops, int edges, int point1, int point2)
         {
             for (int i = 0; i < edges; i++)
@@ -93,6 +104,8 @@ namespace EylerovTsikl
             }
             return false;
         }
+        #endregion
+        #region Проверка на «мост»
         static bool IsBridge(int[,] mas, int edge, int tops, int edges)
         {
             int point1 = FirstOneInEdge(mas, tops, edge);
@@ -104,6 +117,8 @@ namespace EylerovTsikl
                 return false;
             else return true;
         }
+        #endregion
+        #region Выводит эйлеров цикл
         static void EulerСycle(int[,] mas, ref int edges, int tops, int begin)
         {
             int ones = 0;
@@ -123,6 +138,8 @@ namespace EylerovTsikl
                 }
             }
         }
+        #endregion
+        #region Выводит матрицу инциденции
         static void WriteMas(int[,] mas, int tops, int edges)
         {
             for (int i = 0; i < tops; i++)
@@ -132,6 +149,8 @@ namespace EylerovTsikl
                 Console.WriteLine();
             }
         }
+        #endregion
+        #region Проверка на принадлежность к эйлерову графу
         static bool IsEulerGraph(int[,] mas, int edges, int tops)
         {
             for (int i = 1; i < tops; i++)
@@ -149,6 +168,8 @@ namespace EylerovTsikl
             }
             return true;
         }
+        #endregion
+        #region Генерирует граф
         static int[,] Generator(ref int tops, ref int edges)
         {
             int[,] mas;
@@ -191,6 +212,8 @@ namespace EylerovTsikl
             } while (!ok);
             return mas;
         }
+        #endregion
+        #region Запускает генерацию графа, выводит результаты на печать
         static void Main()
         {
             ColorMess.Magenta("\n Генерирую граф, создаю матрицу инциденций и ищу эйлеров цикл...");
@@ -206,5 +229,6 @@ namespace EylerovTsikl
             ColorMess.Yellow(" 0");
             Message.GoToBack();
         }
+        #endregion
     }
 }
